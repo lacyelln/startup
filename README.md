@@ -42,11 +42,10 @@ There will be 3 separate options on which to pick. Whether you want to communica
 ```mermaid
 sequenceDiagram
     actor Lacy
-    Lacy->>Server: uploading writing
     actor Katie
+    Lacy->>Server: uploading writing
     Server -->>Katie: New writing uploaded
     Server -->>Lacy: Writing successfully uploaded
-    You->>Website: Replace this with your design
 ```
 
 ### Key features
