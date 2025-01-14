@@ -41,8 +41,8 @@ There will be 3 separate options on which to pick. Whether you want to communica
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
+    actor Lacy
+    Lacy->>Server: Writing uploaded
     You->>Website: Replace this with your design
 ```
 
