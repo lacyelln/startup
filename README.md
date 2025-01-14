@@ -1,8 +1,8 @@
-# Your startup name here
+# The Writing Discussion
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The Writing Discussion will be an online forum for book lovers to review books that they could possibly recommend. You can connect with friends to see their active readings. As well new writers can post their drafts and writings and get feedback from trusted readers whose opinions they value.
 
 
 > [!NOTE]
@@ -26,13 +26,18 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Have you ever been a scared new writer who really wants to make their way in the world but has no idea how people will react? 
+Have you ever been stuck trying to find a good book to read on a rainy day? Have you ever been so upset with the ending of your book 
+you just need to talk to someone about it? These are all amazing reasons to use The Writing Discussion platform. 
+With the ability to upload the newest snippet of your latest novel, the ability to read reviews and ratings from close friends 
+and their most recently read books and the friends to talk to when the main character really makes you upset you'll never get 
+tired of using The Writing Discussion platform. 
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](startup.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+There will be 3 separate options on which to pick. Whether you want to communicate or look at friends activity. Whether you want to browse or review a book. And, whether you want to upload a writing or review someone elses writing. From there it gets more specific and you can navigate through each of those options and have your own page to look at your activity.
 
 ```mermaid
 sequenceDiagram
@@ -43,20 +48,31 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTPS
+- Displays choices that can be used to navigate to new pages
+- Ability to publish private work
+- Ability to communicate online with with friends
+- Ability to post comments and reactions to book
+- Ability to view others posts on books and personal work
+- Totals up the number of books reviewed and read
+- Ability for admin delete or edit posts
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Several pages used with correct HTML structure. One page for books, one page for reviews, and one page for personal writings.
+- **CSS** - Application styling that fits on different sceen sizes, with color contrasting to highlight separate functions.
+- **React** - Provides login, choice for page display, display writings and books, communicating with friends
+- **Service** - Backend service with endpoints:
+    - login
+    - posting work for books
+    - posting work for writings
+    - communicate with friends
+    - grouping books read with ratings
+- **DB/Login** - Store users, books read, writings uploaded in database. Register and login users. 
+Credentials stored securely in database. Cannot participate unless authenticated.
+- **WebSocket** - As each review or writing is uploaded it is viewable to others as well as comments and other chats.
 
 ## 🚀 AWS deliverable
 
