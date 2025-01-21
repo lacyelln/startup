@@ -73,7 +73,7 @@ Credentials stored securely in database. Cannot participate unless authenticated
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://webprogramming.click).
 
 ## 🚀 HTML deliverable
 
