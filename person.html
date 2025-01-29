@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <header>
+    <h1>The Writing Discussion<sup>&reg;</sup></h1>
+    <p>You have been successfully been logged!</p>
+    <nav>
+        <hr>
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reading.html">Books</a></li>
+          <li><a href="write.html">Writings</a></li>
+          <li><a href="person.html">My Page</a></li>
+        </hr>
+    </nav>
+    <hr />
+  </header>
+  <main>
+    <h3>My Page</h3>
+    <label for="myDropdown">Select which option you'd like to do:</label>
+    <select id="myDropdown">
+    <option value="writings">Post my writing</option>
+    <option value="books">Post a book review</option>
+    </select>
+    <p><i>Placeholder: This will alternate when the buttons actually do something.</i></p>
+
+    <hr>
+    <h3>Post your writing:</h3>
+    <textarea rows="1" cols="50" placeholder="Title"></textarea>
+    <textarea rows="5" cols="50" placeholder="Post your writing here..." style="width: 100%; height: 200px; overflow-y: auto;"></textarea>
+    <button type="submit">Upload</button>
+</hr>
+<hr>
+    <h3>Post a book review:</h3>
+    <textarea rows="1" cols="50" placeholder="Title of book"></textarea>
+    <textarea rows="5" cols="50" placeholder="Write your thoughts here..." style="width: 100%; height: 200px; overflow-y: auto;"></textarea>
+    <label for="rating">Overall Rating:</label>
+    <input type="range" id="rating" name="rating" min="0" max="10" value="5"><br>
+    <label for="fileUpload">Feel free to add a picture with your post:</label>
+    <input type="file" id="fileUpload" name="fileUpload" accept="image/*">
+    <br>
+    <button type="submit">Submit rating</button>
+</hr>
+    </main>
+  <hr>
+  <footer>
+      <p>Created by Lacy Miller</p>
+      <a href="https://github.com/lacyelln/startup.git">My GitHub</a>
+      
+
+      
+  </footer>
+  </hr>
+</html>
