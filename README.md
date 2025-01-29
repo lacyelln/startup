@@ -83,7 +83,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Proper HTML element usage** - I used the different HTML elements properly having a heading on every page, a footer linked to my github and the main part of my page.
 - [X] **Links** - The login page automatically links to the users personal posting page.
 - [X] **Text** - There is text explaining the page and for each review
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [X] **3rd party API placeholder** - I will use websocket, to allow real time updates from recent posts.
 - [X] **Images** - There is an image on the front page and included as an option in the reviews.
 - [X] **Login placeholder** - There is a login on my home page with a placeholder
 - [X] **DB data placeholder** - The writings and book reviews posted by user have a placeholder for where they will be stored. 
