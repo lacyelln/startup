@@ -1,24 +1,129 @@
-.navbar {
-    background-color: #343a40 !important; /* Dark gray background */
+body {
+    font-family: 'Georgia', serif; /* Classic book-like font */
+    font-size: 18px;
+    line-height: 1.6; /* Better readability */
+    color: #3E2723; /* Dark brown for a vintage ink feel */
+    background-color: #FAF3E0; /* Light cream like old paper */
+  }
+  
+  header {
+    flex: 0 80px;
+    font-family: 'Garamond', serif;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: #967860; /* Leather-bound book color */
+    color: #FAF3E0;
+    padding: 15px 0;
+
+  }
+  
+  main {
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+ 
+
+  footer {
+    text-align: center;
     padding: 15px;
+    font-size: 14px;
+    color: #89695f;
+    background: linear-gradient(to top, #967860, transparent);
+}
+
+
+  a {
+      color: #89695f;
+      /* Warm brown, like aged ink */
+      text-decoration: none;
+      border-bottom: 1px dashed #ce966c;
+      /* Gives an old-school underline effect */
+  }
+
+  a:hover {
+      color: #8B0000;
+      /* Dark red for vintage book elegance */
+  }
+
+  
+  menu {
+    flex: 1;
+    display: flex;
+    /*  overwrite Bootstrap so the menu does not wrap */
+    flex-direction: row !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
   }
   
   .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
+    padding-left: 0.3em;
+    border-bottom: solid rgb(182, 182, 182) thin;
   }
   
-  .navbar-nav {
+  menu .nav-item {
+    padding: 0 0.5em;
+  }
+  
+  footer a {
+    float: right;
+  }
+  
+  @media (max-height: 600px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+    main {
+      flex: 1 100vh;
+    }
+  }
+  .container {
+    max-width: 700px; /* Keeps text centered and readable */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 240, 0.9); /* Slight transparency */
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2); /* Adds depth */
+}
+
+/* Style the navigation bar */
+menu {
     display: flex;
-    gap: 15px;
-  }
-  
-  .nav-link {
-    color: white !important;
-    transition: color 0.3s;
-  }
-  
-  .nav-link:hover {
-    color: #ffc107 !important; /* Yellow hover effect */
-  }
+    list-style: none; /* Removes bullet points */
+    padding: 10px 0;
+    background-color: #8B5E3B; /* Leather-bound book color */
+    justify-content: center; /* Centers the menu */
+    border-bottom: 4px solid #5A3E36; /* Adds a solid bottom border for structure */
+}
+
+/* Style each menu item */
+menu li {
+    margin: 0 20px; /* Space between menu items */
+}
+
+/* Style the links */
+menu a {
+    text-decoration: none;
+    font-family: 'Garamond', serif; /* Classic book-like font */
+    font-size: 20px;
+    font-weight: bold;
+    color: #F5F5DC; /* Soft beige like aged paper */
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+menu a:hover {
+    color: #706e62; /* Golden effect like embossed book titles */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    border-bottom: 2px solid #706e62; /* Underline effect */
+}
+
   
