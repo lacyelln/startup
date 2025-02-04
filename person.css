@@ -13,7 +13,7 @@ textarea {
 }
 
 textarea:focus {
-    border-color: #FFD700; /* Gold on focus, like old book titles */
+    border-color: #706e62; /* Gold on focus, like old book titles */
     outline: none; /* Removes default outline */
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6); /* Gold glow on focus */
+    box-shadow: 0 0 5px rgba(189, 186, 174, 0.6); /* Gold glow on focus */
 }
