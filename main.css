@@ -1,0 +1,24 @@
+.navbar {
+    background-color: #343a40 !important; /* Dark gray background */
+    padding: 15px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav-link {
+    color: white !important;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #ffc107 !important; /* Yellow hover effect */
+  }
+  
