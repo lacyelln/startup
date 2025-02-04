@@ -1,0 +1,19 @@
+textarea {
+    font-family: 'Georgia', serif; /* Classic serif font */
+    font-size: 16px;
+    color: #3E2723; /* Dark brown for vintage ink */
+    background-color: #F5F5DC; /* Light cream like aged paper */
+    border: 2px solid #8B5E3B; /* Soft brown border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding does not increase the width */
+    margin-bottom: 20px; /* Adds space between textboxes */
+    resize: vertical; /* Allows resizing only vertically */
+}
+
+textarea:focus {
+    border-color: #FFD700; /* Gold on focus, like old book titles */
+    outline: none; /* Removes default outline */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6); /* Gold glow on focus */
+}
