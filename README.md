@@ -93,12 +93,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [X] **Header, footer, and main content body** - I did not complete this part of the deliverable.
+- [X] **Navigation elements** - I no loner have lines separating but different colors and heading
+- [X] **Responsive to window resizing** - yes it works on different platforms.
+- [X] **Application elements** - Used good contrast and whitespace.
+- [X] **Application text content** - Consistent fonts across all pages.
+- [X] **Application images** - Styled images on different pages.
 
 ## 🚀 React part 1: Routing deliverable
 
