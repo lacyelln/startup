@@ -126,4 +126,51 @@ menu a:hover {
     border-bottom: 2px solid #706e62; /* Underline effect */
 }
 
-  
+/* Style for email input */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 17px;
+    font-family: 'Georgia', serif;
+    color: #5A3E36;
+    border: 2px solid #8B5E3B;
+    border-radius: 6px;
+    background-color: #FFF8DC; /* Light parchment */
+    transition: all 0.3s ease;
+}
+
+/* Button container to align them side by side */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 12px;
+}
+
+/* Style buttons */
+button {
+    width: 45%; /* Smaller width to fit side by side */
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    color: white;
+    background-color: #8B5E3B; /* Old book brown */
+    border: 2px solid #5A3E36;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #FFD700; /* Golden hue */
+    color: #3E2723; /* Deep brown */
+    transform: scale(1.05);
+}
+
+/* Button active (click) effect */
+button:active {
+    transform: scale(0.98);
+}
+
