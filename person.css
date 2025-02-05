@@ -1,73 +1,73 @@
 textarea {
-    font-family: 'Georgia', serif; /* Classic serif font */
+    font-family: 'Georgia', serif; 
     font-size: 16px;
-    color: #3E2723; /* Dark brown for vintage ink */
-    background-color: #fbfbdd; /* Light cream like aged paper */
-    border: 2px solid #c5b1a2; /* Soft brown border */
-    border-radius: 8px; /* Rounded corners */
+    color: #3E2723; 
+    background-color: #fbfbdd; 
+    border: 2px solid #c5b1a2; 
+    border-radius: 8px; 
     padding: 10px;
     width: 100%;
-    box-sizing: border-box; /* Ensures padding does not increase the width */
-    margin-bottom: 20px; /* Adds space between textboxes */
-    resize: vertical; /* Allows resizing only vertically */
+    box-sizing: border-box; 
+    margin-bottom: 20px; 
+    resize: vertical; 
 }
 
 textarea:focus {
-    border-color: #3E2723;; /* Gold on focus, like old book titles */
-    outline: none; /* Removes default outline */
-    box-shadow: 0 0 5px rgba(189, 186, 174, 0.6); /* Gold glow on focus */
+    border-color: #3E2723;
+    outline: none;
+    box-shadow: 0 0 5px rgba(189, 186, 174, 0.6);
 }
 
-/* Style the main container */
+
 main {
     max-width: 700px;
     margin: 30px auto;
     padding: 20px;
-    background-color: #FAF3E0; /* Soft cream like old parchment */
+    background-color: #FAF3E0;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Gentle shadow for depth */
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Style the heading */
+
 h3 {
     font-family: 'Garamond', serif;
     font-size: 24px;
-    color: #3E2723; /* Dark brown ink-like color */
+    color: #3E2723; 
     text-align: center;
     margin-bottom: 15px;
 }
 
-/* Style the label */
+
 label {
     font-family: 'Georgia', serif;
     font-size: 18px;
-    color: #5A3E36; /* Warm brown */
+    color: #5A3E36; 
     display: block;
     margin-bottom: 8px;
 }
 
-/* Style the dropdown select */
+
 select {
     font-family: 'Georgia', serif;
     font-size: 16px;
     color: #3E2723;
-    background-color: #F5F5DC; /* Light cream background */
-    border: 2px solid #8B5E3B; /* Soft brown border */
+    background-color: #F5F5DC;
+    border: 2px solid #8B5E3B; 
     border-radius: 6px;
     padding: 10px;
-    width: 100%; /* Makes it full width */
+    width: 100%; 
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Dropdown Hover and Focus */
+
 select:hover, select:focus {
-    border-color: #FFD700; /* Gold border on hover/focus */
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6); /* Subtle golden glow */
+    border-color: #FFD700; 
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
     outline: none;
 }
 
-/* Style the placeholder paragraph */
+
 p {
     font-family: 'Georgia', serif;
     font-size: 16px;
@@ -75,50 +75,50 @@ p {
     background-color: #F5F5DC;
     padding: 10px;
     border-radius: 6px;
-    border-left: 4px solid #8B5E3B; /* Adds a bookish margin effect */
+    border-left: 4px solid #8B5E3B; 
     font-style: italic;
 }
 
-/* Style the rating label */
+
 label {
     font-family: 'Georgia', serif;
     font-size: 18px;
-    color: #5A3E36; /* Warm brown */
+    color: #5A3E36; 
     display: block;
     margin: 10px 0 5px;
 }
 
-/* Style the rating input (slider) */
+
 input[type="range"] {
     width: 100%;
     height: 8px;
-    background: #8B5E3B; /* Warm brown track */
+    background: #8B5E3B; 
     border-radius: 4px;
     outline: none;
     transition: all 0.3s ease;
-    -webkit-appearance: none; /* Removes default styling */
+    -webkit-appearance: none; 
 }
 
-/* Style the slider thumb (the draggable part) */
+
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    background: #FFD700; /* Gold handle */
+    background: #FFD700; 
     border-radius: 50%;
     cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-    background: #D4AF37; /* Darker gold on hover */
+    background: #D4AF37;
 }
 
-/* Style the file upload input */
+
 input[type="file"] {
     font-family: 'Georgia', serif;
     font-size: 16px;
     color: #3E2723;
-    background-color: #F5F5DC; /* Light parchment color */
+    background-color: #F5F5DC;
     border: 2px solid #8B5E3B;
     border-radius: 6px;
     padding: 8px;
@@ -128,16 +128,16 @@ input[type="file"] {
 }
 
 input[type="file"]:hover {
-    background-color: #FFD700; /* Golden glow on hover */
+    background-color: #FFD700;
 }
 
-/* Style the submit button */
+
 button {
     font-family: 'Georgia', serif;
     font-size: 18px;
     color: white;
-    background-color: #8B5E3B; /* Leather-bound book brown */
-    border: 2px solid #5A3E36; /* Darker brown border */
+    background-color: #8B5E3B; 
+    border: 2px solid #5A3E36; 
     border-radius: 6px;
     padding: 10px 20px;
     cursor: pointer;
@@ -147,12 +147,12 @@ button {
 }
 
 button:hover {
-    background-color: #FFD700; /* Golden effect on hover */
-    color: #3E2723; /* Dark brown text when hovered */
+    background-color: #FFD700;
+    color: #3E2723; 
 }
 
 button:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); /* Gold glow on focus */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
 }
 
