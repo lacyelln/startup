@@ -2,7 +2,7 @@ textarea {
     font-family: 'Georgia', serif; /* Classic serif font */
     font-size: 16px;
     color: #3E2723; /* Dark brown for vintage ink */
-    background-color: #f4f4f2; /* Light cream like aged paper */
+    background-color: #fbfbdd; /* Light cream like aged paper */
     border: 2px solid #c5b1a2; /* Soft brown border */
     border-radius: 8px; /* Rounded corners */
     padding: 10px;
@@ -13,7 +13,146 @@ textarea {
 }
 
 textarea:focus {
-    border-color: #706e62; /* Gold on focus, like old book titles */
+    border-color: #3E2723;; /* Gold on focus, like old book titles */
     outline: none; /* Removes default outline */
     box-shadow: 0 0 5px rgba(189, 186, 174, 0.6); /* Gold glow on focus */
 }
+
+/* Style the main container */
+main {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #FAF3E0; /* Soft cream like old parchment */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Gentle shadow for depth */
+}
+
+/* Style the heading */
+h3 {
+    font-family: 'Garamond', serif;
+    font-size: 24px;
+    color: #3E2723; /* Dark brown ink-like color */
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Style the label */
+label {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: #5A3E36; /* Warm brown */
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Style the dropdown select */
+select {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #3E2723;
+    background-color: #F5F5DC; /* Light cream background */
+    border: 2px solid #8B5E3B; /* Soft brown border */
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%; /* Makes it full width */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dropdown Hover and Focus */
+select:hover, select:focus {
+    border-color: #FFD700; /* Gold border on hover/focus */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6); /* Subtle golden glow */
+    outline: none;
+}
+
+/* Style the placeholder paragraph */
+p {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #5A3E36;
+    background-color: #F5F5DC;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #8B5E3B; /* Adds a bookish margin effect */
+    font-style: italic;
+}
+
+/* Style the rating label */
+label {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: #5A3E36; /* Warm brown */
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Style the rating input (slider) */
+input[type="range"] {
+    width: 100%;
+    height: 8px;
+    background: #8B5E3B; /* Warm brown track */
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none; /* Removes default styling */
+}
+
+/* Style the slider thumb (the draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #FFD700; /* Gold handle */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #D4AF37; /* Darker gold on hover */
+}
+
+/* Style the file upload input */
+input[type="file"] {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #3E2723;
+    background-color: #F5F5DC; /* Light parchment color */
+    border: 2px solid #8B5E3B;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+input[type="file"]:hover {
+    background-color: #FFD700; /* Golden glow on hover */
+}
+
+/* Style the submit button */
+button {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: white;
+    background-color: #8B5E3B; /* Leather-bound book brown */
+    border: 2px solid #5A3E36; /* Darker brown border */
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #FFD700; /* Golden effect on hover */
+    color: #3E2723; /* Dark brown text when hovered */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); /* Gold glow on focus */
+}
+
