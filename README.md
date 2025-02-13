@@ -104,9 +104,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [X] **Bundled using Vite** - I completed this deliverable.
+- [X] **Components** - I switched my Login Books Writings and Posts to be components.
+- [X] **Router** - It now reroutes to these pages without .html
 
 ## 🚀 React part 2: Reactivity
 
