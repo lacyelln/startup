@@ -1,30 +1,26 @@
 import React from 'react';
 
-export function Login() {
+import { Unauthenticated } from './login';
+import { Authenticated } from './unauthenticated';
+import { AuthState } from './authState';
+
+export function Login({ userName, authState, onAuthChange }) {
   return (
-    <main className="container-fluid body text-center">
-      <h1>Welcome to The Writing Discussion</h1>
-      <img
-        src="https://i.pinimg.com/originals/a4/0a/aa/a40aaa98dcb170a17896485105401908.jpg"
-        className="animated-image"
-        alt="Writing theme"
-      />
-
-      <p>
-        This website allows you to share your own writings with friends and family. It's also a great way to stay updated on the most popular books with their reviews.
-      </p>
-      <p>Login or create an account with us to get started in on all the fun!</p>
-
-      <form method="get" action="person.html">
-        <div>
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          <input type="password" placeholder="password" />
-        </div>
-        <button type="submit">Login</button>
-        <button type="button">Create</button>
-      </form>
+    <main className='container-fluid bg-secondary text-center'>
+      <div>
+        {authState !== AuthState.Unknown && <h1>Welcome to Simon</h1>}
+        {authState === AuthState.Authenticated && (
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+        )}
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
+      </div>
     </main>
   );
 }

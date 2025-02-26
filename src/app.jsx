@@ -37,7 +37,7 @@ export default function App() {
                     </li>
                     <li className="nav-item">
                     <NavLink className="nav-link" to="person">
-                        Posts
+                        Post
                     </NavLink>
                     </li>
                 </menu>   
