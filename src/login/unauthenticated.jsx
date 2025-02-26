@@ -34,8 +34,7 @@ export function Unauthenticated(props) {
       </p>
       <p>Login or create an account with us to get started in on all the fun!</p>
 
-      <form method="get" action="/src/person/person.html">
-        <div>
+      <div>
           <input type="text" name="email" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" required />
         </div>
         <div>
@@ -49,7 +48,7 @@ export function Unauthenticated(props) {
         </Button>
         <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
     
-      </form>
+    
     </main>
   );
 }
