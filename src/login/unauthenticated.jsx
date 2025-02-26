@@ -7,6 +7,7 @@ export function Unauthenticated(props) {
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
 
+  const navigate = useNavigate();
 
   async function loginUser() {
     localStorage.setItem('userName', userName);
@@ -16,6 +17,7 @@ export function Unauthenticated(props) {
   async function createUser() {
     localStorage.setItem('userName', userName);
     props.onLogin(userName);
+    navigate('/person');
   }
 
   return (
