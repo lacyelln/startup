@@ -112,8 +112,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] **All functionality implemented or mocked out** - Yes, I have all the pages fully interacting with each other and places mocked out for when the databse and API stuff is added.
+- [X] **Hooks** - Extensive use of useEffect and useState from react.
 
 ## 🚀 Service deliverable
 
