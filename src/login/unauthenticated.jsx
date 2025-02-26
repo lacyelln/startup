@@ -6,19 +6,18 @@ export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState(props.userName);
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
-}
 
-async function loginUser() {
-  localStorage.setItem('userName', userName);
-  props.onLogin(userName);
-}
 
-async function createUser() {
-  localStorage.setItem('userName', userName);
-  props.onLogin(userName);
-}
+  async function loginUser() {
+    localStorage.setItem('userName', userName);
+    props.onLogin(userName);
+  }
 
-export function Login() {
+  async function createUser() {
+    localStorage.setItem('userName', userName);
+    props.onLogin(userName);
+  }
+
   return (
     <main className="container-fluid body text-center">
       <h1>Welcome to The Writing Discussion</h1>
@@ -40,7 +39,6 @@ export function Login() {
         <div>
           <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" required />
         </div>
-        <button type="submit">Login</button>
         <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
           Login
         </Button>
