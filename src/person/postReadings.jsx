@@ -9,6 +9,17 @@ export function PostReview() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newReview = { title, review, rating };
+
+    const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+    existingReviews.push(newReview);
+
+    localStorage.setItem('reviews', JSON.stringify(existingReviews));
+
+    setTitle('');
+    setReview('');
+    setRating(5);
     navigate('/books');
   };
 

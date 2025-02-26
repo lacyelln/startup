@@ -14,8 +14,10 @@ export function PostWriting() {
       return;
     }
 
-    localStorage.setItem('postTitle', title);
-    localStorage.setItem('postContent', content);
+    const existingWritings = JSON.parse(localStorage.getItem('writings')) || [];
+    const newWriting = { title, content };
+    existingWritings.push(newWriting);
+    localStorage.setItem('writings', JSON.stringify(existingWritings));
 
     setTitle('');
     setContent('');
