@@ -66,17 +66,6 @@ apiRouter.post('/auth/create', async (req, res) => {
     }
   };
   
-  // GetScores
-  apiRouter.get('/scores', verifyAuth, (_req, res) => {
-    res.send(scores);
-  });
-  
-  // SubmitScore
-  apiRouter.post('/score', verifyAuth, (req, res) => {
-    scores = updateScores(req.body);
-    res.send(scores);
-  });
-  
   // Default error handler
   app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
