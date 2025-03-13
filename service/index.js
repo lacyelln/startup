@@ -1,8 +1,7 @@
-const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
+const express = require('express');
 const uuid = require('uuid');
-
 const app = express();
 const authCookieName = 'token';
 
@@ -23,7 +22,6 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-/** 📌 AUTHENTICATION ROUTES **/
 
 // CreateAuth: Register a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -31,7 +29,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     return res.status(409).send({ msg: 'Existing user' });
   }
 
-  const user = await createUser(req.body.email, req.body.password);
+  const user = await createUserAccount(req.body.email, req.body.password);
   setAuthCookie(res, user.token);
   res.send({ email: user.email });
 });
@@ -119,9 +117,8 @@ apiRouter.post('/writing', verifyAuth, (req, res) => {
   res.status(201).send(newPost);
 });
 
-/** 📌 UTILITY FUNCTIONS **/
 
-async function createUser(email, password) {
+async function createUserAccount(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
