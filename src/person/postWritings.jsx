@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function PostWriting() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [username, setUsername] = useState('Anonymous'); // Default to anonymous
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch the logged-in user's information
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('/api/user', {
+          method: 'GET',
+          credentials: 'include', // Include authentication cookies
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUsername(data.username || 'Anonymous'); // Set username if available
+        }
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -14,14 +36,14 @@ export function PostWriting() {
       return;
     }
 
-    const newWriting = { title, content, user: "Anonymous" }; // Replace with actual user when authentication is added
+    const newWriting = { title, content, user: username }; // Attach the username
 
     try {
       const response = await fetch('/api/writing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newWriting),
-        credentials: 'include', // To send authentication cookies
+        credentials: 'include',
       });
 
       if (response.ok) {

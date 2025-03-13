@@ -8,7 +8,7 @@ export function Writings() {
       try {
         const response = await fetch('/api/writing', {
           method: 'GET',
-          credentials: 'include', // To send authentication cookies
+          credentials: 'include',
         });
         if (response.ok) {
           const data = await response.json();
@@ -39,7 +39,7 @@ export function Writings() {
               backgroundColor: '#fbfbdd',
             }}
           >
-            <h4>{writing.title} - <i>{writing.user || 'Anonymous'}</i></h4>
+            <h4>{writing.title} </h4>
             <textarea
               rows="10"
               cols="50"

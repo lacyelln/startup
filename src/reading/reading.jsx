@@ -45,13 +45,28 @@ export function BookOfTheDay() {
   );
 }
 
-
 export function Books() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    setReviews(storedReviews);
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch('/api/reading', {
+          method: 'GET',
+          credentials: 'include', // To send authentication cookies
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+        } else {
+          console.error('Failed to fetch reviews');
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
   }, []);
 
   return (
@@ -91,82 +106,6 @@ export function Books() {
           <i>No reviews yet. Submit one on the book review page!</i>
         </p>
       )}
-
-      <h3>Browse</h3>
-      <div
-        style={{
-          border: '1px solid #c5b1a2',
-          padding: '10px',
-          borderRadius: '10px',
-          marginBottom: '20px',
-          backgroundColor: '#fbfbdd',
-        }}
-      >
-        <p>Little Red Riding Hood:</p>
-        <img
-          src="https://kidsbookspublishing.com/wp-content/uploads/2022/02/Fairy-Tale-Series_Little-Red-Riding-Hood-FC-1-1.jpg"
-          width="200"
-          height="300"
-          alt="Little Red Riding Hood book cover"
-          style={{ borderRadius: '5px' }}
-        />
-        <p>
-          Little Red Riding Hood was such a good book to read to my little kids. They loved it and want to hear it all
-          the time now. Totally 10/10.
-        </p>
-        <label htmlFor="rating-little-red">Overall Rating:</label>
-        <input
-          type="range"
-          id="rating-little-red"
-          name="rating-little-red"
-          min="0"
-          max="10"
-          value="10"
-          readOnly
-          style={{ width: '100%' }}
-        />
-        <p>
-          <i>Placeholder: In future this will be accurate with what is stored in the database as the score.</i>
-        </p>
-      </div>
-
-      <div
-        style={{
-          border: '1px solid #c5b1a2',
-          padding: '10px',
-          borderRadius: '10px',
-          marginBottom: '20px',
-          backgroundColor: '#fbfbdd',
-        }}
-      >
-        <p>Goldilocks and the Three Bears:</p>
-        <img
-          src="https://cdn.firstcry.com/education/2022/09/10141447/goldilocks-three-bears-fairy-tale-one-768x525.jpg"
-          width="300"
-          height="300"
-          alt="Goldilocks and the Three Bears book cover"
-          style={{ borderRadius: '5px' }}
-        />
-        <p>
-          Goldilocks was a terrible read. Such a bad example for little kids—teaching them to take things without asking.
-          Unless you want your kids to be spoiled, don't read it to them. Totally a 3/10.
-        </p>
-        <label htmlFor="rating-goldilocks">Overall Rating:</label>
-        <input
-          type="range"
-          id="rating-goldilocks"
-          name="rating-goldilocks"
-          min="0"
-          max="10"
-          value="3"
-          readOnly
-          style={{ width: '100%' }}
-        />
-      </div>
-
-      <p>
-        <i>Placeholder: In future this will be populated with what others have submitted in the database.</i>
-      </p>
     </main>
   );
 }
