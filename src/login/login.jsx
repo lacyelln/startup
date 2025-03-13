@@ -25,7 +25,7 @@ export function Login(props) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: userName, password }),
+        body: JSON.stringify({ email: userName, password: password}),
       });
   
       if (!response.ok) {
@@ -39,7 +39,6 @@ export function Login(props) {
       setDisplayError(`⚠ Error: ${error.message}`);
     }
   }
-  
 
   async function createUser() {
     try {
@@ -48,7 +47,7 @@ export function Login(props) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: userName, password }),
+        body: JSON.stringify({ email: userName, password: password}),
       });
   
       if (!response.ok) {
