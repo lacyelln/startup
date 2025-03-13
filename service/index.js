@@ -58,6 +58,14 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
+app.get('/api/user', (req, res) => {
+  if (req.user) {
+    res.json({ username: req.user.username });
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
+});
+
 
 // Get the authenticated user info
 apiRouter.get('/auth/user', async (req, res) => {
