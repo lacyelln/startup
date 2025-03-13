@@ -1,8 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './messageDialog';
 import { useNavigate } from 'react-router-dom';
-
+import { loginUser as apiLoginUser, createUser as apiCreateUser, logoutUser } from '../../service/index.jsx';
 
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
@@ -11,21 +10,32 @@ import { AuthState } from './authState';
 export function Login(props) {
   const authState = props.authState;
   const onAuthChange = props.onAuthChange;
-  const [userName, setUserName] = React.useState(props.userName);
+  const [userName, setUserName] = React.useState(props.userName || '');
+
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
 
   
   const navigate = useNavigate();
-
+  
   async function loginUser() {
-    localStorage.setItem('userName', userName);
-    navigate('/person');
+    try {
+      await apiLoginUser(userName, password);
+      onAuthChange(userName, AuthState.Authenticated);
+      navigate('/person');
+    } catch (error) {
+      setDisplayError('Login failed. Please check your credentials.');
+    }
   }
 
   async function createUser() {
-    localStorage.setItem('userName', userName);
-    navigate('/person');
+    try {
+      await apiCreateUser(userName, password);
+      onAuthChange(userName, AuthState.Authenticated);
+      navigate('/person');
+    } catch (error) {
+      setDisplayError('Account creation failed. User may already exist.');
+    }
   }
   
   
