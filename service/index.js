@@ -17,6 +17,8 @@ let users = [];
 let reading_posts = [];
 let writing_posts = [];
 
+app.use(express.static('public'));
+
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
@@ -75,28 +77,6 @@ apiRouter.post('/auth/create', async (req, res) => {
   app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
   });
-
-  // updateScores considers a new score for inclusion in the high scores.
-function updateScore(newScore) {
-    let found = false;
-    for (const [i, prevScore] of scores.entries()) {
-      if (newScore.score > prevScore.score) {
-        scores.splice(i, 0, newScore);
-        found = true;
-        break;
-      }
-    }
-  
-    if (!found) {
-      scores.push(newScore);
-    }
-  
-    if (scores.length > 10) {
-      scores.length = 10;
-    }
-  
-    return scores;
-  }
   
   async function createUser(email, password) {
     const passwordHash = await bcrypt.hash(password, 10);
@@ -145,10 +125,11 @@ apiRouter.get('/reading', (_req, res) => {
       rating: req.body.rating,
       user: req.body.user,
     };
-  
+
     reading_posts.push(newPost);
     res.status(201).send(newPost);
-  });
+});
+
   
   // API route to submit a writing post
   apiRouter.post('/writing', verifyAuth, (req, res) => {

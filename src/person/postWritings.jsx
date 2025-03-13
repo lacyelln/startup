@@ -6,7 +6,7 @@ export function PostWriting() {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  const handleUpload = (e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
 
     if (!title.trim() || !content.trim()) {
@@ -14,15 +14,26 @@ export function PostWriting() {
       return;
     }
 
-    const existingWritings = JSON.parse(localStorage.getItem('writings')) || [];
-    const newWriting = { title, content };
-    existingWritings.push(newWriting);
-    localStorage.setItem('writings', JSON.stringify(existingWritings));
+    const newWriting = { title, content, user: "Anonymous" }; // Replace with actual user when authentication is added
 
-    setTitle('');
-    setContent('');
+    try {
+      const response = await fetch('/api/writing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newWriting),
+        credentials: 'include', // To send authentication cookies
+      });
 
-    navigate('/writings');
+      if (response.ok) {
+        setTitle('');
+        setContent('');
+        navigate('/writings');
+      } else {
+        console.error('Failed to upload writing');
+      }
+    } catch (error) {
+      console.error('Error uploading writing:', error);
+    }
   };
 
   return (

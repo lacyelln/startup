@@ -7,20 +7,29 @@ export function PostReview() {
   const [rating, setRating] = useState(5);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newReview = { title, review, rating };
+    const newReview = { title, review, rating: Number(rating), user: "Anonymous" }; // Replace with actual user
+  
+    try {
+      const response = await fetch('/api/reading', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newReview),
+        credentials: 'include', // Ensures auth cookies are sent
+      });
 
-    const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-
-    existingReviews.push(newReview);
-
-    localStorage.setItem('reviews', JSON.stringify(existingReviews));
-
-    setTitle('');
-    setReview('');
-    setRating(5);
-    navigate('/books');
+      if (response.ok) {
+        setTitle('');
+        setReview('');
+        setRating(5);
+        navigate('/books');
+      } else {
+        console.error('Failed to submit review');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
   };
 
   return (
@@ -49,10 +58,11 @@ export function PostReview() {
         min="0" 
         max="10" 
         value={rating} 
-        onChange={(e) => setRating(e.target.value)} 
+        onChange={(e) => setRating(Number(e.target.value))} 
       />
       <br />
       <button type="submit" onClick={handleSubmit}>Submit rating</button>
     </div>
   );
 }
+
