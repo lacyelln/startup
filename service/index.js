@@ -159,40 +159,5 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-export async function loginUser(email, password) {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      credentials: 'include', // Important for cookie authentication
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-  
-    if (!response.ok) {
-      throw new Error('Login failed');
-    }
-  
-    return response.json();
-  }
-  
-  export async function createUser(email, password) {
-    const response = await fetch('/api/auth/create', {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-  
-    if (!response.ok) {
-      throw new Error('User already exists');
-    }
-  
-    return response.json();
-  }
-  
-  export async function logoutUser() {
-    await fetch('/api/auth/logout', {
-      method: 'DELETE',
-      credentials: 'include',
-    });
-  }
+
   
