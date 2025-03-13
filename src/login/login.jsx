@@ -20,23 +20,49 @@ export function Login(props) {
   
   async function loginUser() {
     try {
-      await apiLoginUser(userName, password);
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: userName, password }),
+      });
+  
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.msg || 'Login failed');
+      }
+  
       onAuthChange(userName, AuthState.Authenticated);
       navigate('/person');
     } catch (error) {
-      setDisplayError('Login failed. Please check your credentials.');
+      setDisplayError(`⚠ Error: ${error.message}`);
     }
   }
+  
 
   async function createUser() {
     try {
-      await apiCreateUser(userName, password);
+      const response = await fetch('/api/auth/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: userName, password }),
+      });
+  
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.msg);
+      }
+  
       onAuthChange(userName, AuthState.Authenticated);
       navigate('/person');
     } catch (error) {
-      setDisplayError('Account creation failed. User may already exist.');
+      setDisplayError(`⚠ Error: ${error.message}`);
     }
   }
+  
   
   
   return (
