@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageDialog } from './messageDialog';
 import { useNavigate } from 'react-router-dom';
-import { loginUser as apiLoginUser, createUser as apiCreateUser, logoutUser } from '../../service/index.js';
+//import { loginUser as apiLoginUser, createUser as apiCreateUser, logoutUser } from '../../service/index.js';
 
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
