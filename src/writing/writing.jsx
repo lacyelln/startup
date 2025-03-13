@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
 export function Writings() {
-  const [writings, setWritings] = useState([]); // State for storing writings
+  const [writings, setWritings] = useState([]);
 
   useEffect(() => {
-    const storedWritings = JSON.parse(localStorage.getItem('writings')) || [];
-    setWritings(storedWritings);
+    const fetchWritings = async () => {
+      try {
+        const response = await fetch('/api/writing', {
+          method: 'GET',
+          credentials: 'include', // To send authentication cookies
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setWritings(data);
+        } else {
+          console.error('Failed to fetch writings');
+        }
+      } catch (error) {
+        console.error('Error fetching writings:', error);
+      }
+    };
+
+    fetchWritings();
   }, []);
 
   return (
@@ -23,7 +39,7 @@ export function Writings() {
               backgroundColor: '#fbfbdd',
             }}
           >
-            <h4>{writing.title}</h4>
+            <h4>{writing.title} - <i>{writing.user || 'Anonymous'}</i></h4>
             <textarea
               rows="10"
               cols="50"
@@ -44,61 +60,6 @@ export function Writings() {
           <i>No writings yet. Submit one on the writing page!</i>
         </p>
       )}
-
-      <h3>Browse</h3>
-      <div
-        style={{
-          border: '1px solid #c5b1a2',
-          padding: '10px',
-          borderRadius: '10px',
-          marginBottom: '20px',
-          backgroundColor: '#fbfbdd',
-        }}
-      >
-        <label htmlFor="essay-little-red">Little Red Riding Hood:</label>
-        <textarea
-          id="essay-little-red"
-          name="essay"
-          rows="10"
-          cols="50"
-          defaultValue={`Once upon a time there was a dear little girl who was loved by every one who looked at her...`}
-          readOnly
-          style={{
-            width: '100%',
-            backgroundColor: '#fbfbdd',
-            color: '#3E2723',
-            border: 'none',
-            resize: 'none',
-          }}
-        />
-      </div>
-
-      <div
-        style={{
-          border: '1px solid #c5b1a2',
-          padding: '10px',
-          borderRadius: '10px',
-          marginBottom: '20px',
-          backgroundColor: '#fbfbdd',
-        }}
-      >
-        <label htmlFor="essay-goldilocks">Goldilocks and the Three Bears:</label>
-        <textarea
-          id="essay-goldilocks"
-          name="essay"
-          rows="10"
-          cols="50"
-          defaultValue={`Once upon a time there were three Bears, who lived together in a house of their own...`}
-          readOnly
-          style={{
-            width: '100%',
-            backgroundColor: '#fbfbdd',
-            color: '#3E2723',
-            border: 'none',
-            resize: 'none',
-          }}
-        />
-      </div>
     </main>
   );
 }
