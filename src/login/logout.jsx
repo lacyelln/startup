@@ -1,25 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import React from "react";
 
-export function LogoutButton() {
-  const navigate = useNavigate();
+export function LogoutButton({ userName, onLogout }) {
+  if (!userName) return null; // Only show if user is logged in
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch('/api/logout', {
-        method: 'POST',
-        credentials: 'include', // Ensures cookies are sent
-      });
-
-      if (response.ok) {
-        localStorage.removeItem('authToken'); // If using JWT
-        navigate('/login'); // Redirect to login page
-      } else {
-        console.error('Logout failed');
-      }
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <div className="logout-container">
+      <span className="welcome-text">Welcome, {userName}!</span>
+      <button onClick={onLogout} className="logout-button">Logout</button>
+    </div>
+  );
 }
+

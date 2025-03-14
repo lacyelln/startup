@@ -187,3 +187,57 @@ button:active {
     transform: scale(1.1);
     box-shadow: 0 8px 16px rgba(255, 215, 0, 0.5);
 }
+
+.footer-container {
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #3E2723;
+  background-color: #F5F5DC;
+  border: 2px solid #8B5E3B;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container p {
+  font-size: 16px;
+  color: #5A3E36;
+  background-color: #F5F5DC;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid #8B5E3B;
+  font-style: italic;
+  margin: 0;
+}
+
+.logout-button {
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  color: white;
+  background-color: #8B5E3B;
+  border: 2px solid #5A3E36;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.logout-button:hover {
+  background-color: #FFD700;
+  color: #3E2723;
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+}

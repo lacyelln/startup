@@ -1,34 +1,36 @@
-button {
-    font-family: 'Georgia', serif;
-    font-size: 18px;
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    background-color: #3E2723; /* Adjust color as needed */
+    padding: 10px;
+}
+
+.welcome-text {
+    font-size: 22px;
     color: white;
-    background: linear-gradient(to bottom, #8B5E3B, #5A3E36); /* Elegant gradient */
-    border: 2px solid #5A3E36; 
-    border-radius: 8px; 
-    padding: 12px 24px; 
+    margin-bottom: 10px;
+}
+
+.logout-button {
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    width: 100%; 
-    margin-top: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
-    background: linear-gradient(to bottom, #FFD700, #D4AF37); /* Gold hover effect */
+.logout-button:hover {
+    background-color: #FFD700;
     color: #3E2723;
-    border-color: #FFD700;
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
 }
 
-button:active {
-    background: #D4AF37;
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
-}

@@ -1,24 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function PostReview() {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(5);
+  const [username, setUsername] = useState(''); // Store logged-in user's email
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('/api/user', {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setUsername(data.username || 'Anonymous');
+        } else {
+          console.error('User not authenticated');
+          navigate('/login');
+        }
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        navigate('/login');
+      }
+    };
+  
+    fetchUser();
+  }, [navigate]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newReview = { title, review, rating: Number(rating), user: "Anonymous" }; // Replace with actual user
+  
+    if (!username) {
+      alert('You must be logged in to submit a review.');
+      return;
+    }
+  
+    const newReview = { title, review, rating: Number(rating), user: username };
   
     try {
       const response = await fetch('/api/reading', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newReview),
-        credentials: 'include', // Ensures auth cookies are sent
+        credentials: 'include',
       });
-
+  
       if (response.ok) {
         setTitle('');
         setReview('');
@@ -26,9 +57,11 @@ export function PostReview() {
         navigate('/books');
       } else {
         console.error('Failed to submit review');
+        alert('Failed to submit review. Try again later.');
       }
     } catch (error) {
       console.error('Error submitting review:', error);
+      alert('Error submitting review. Check console for details.');
     }
   };
 
@@ -65,4 +98,3 @@ export function PostReview() {
     </div>
   );
 }
-

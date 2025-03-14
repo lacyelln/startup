@@ -58,29 +58,37 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
-app.get('/api/user', (req, res) => {
-  if (req.user) {
-    res.json({ username: req.user.username });
-  } else {
-    res.status(401).json({ message: 'Not authenticated' });
+
+app.get('/api/user', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+
+  if (!user) {
+    return res.status(401).json({ error: 'User not authenticated' });
   }
+
+  res.json({ username: user.email }); // Assuming username is the email
 });
+
 
 
 // Get the authenticated user info
 apiRouter.get('/auth/user', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    return res.send({ email: user.email });
+    res.send({ email: req.user.email });
   }
 
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
+
+
 // Middleware to verify authentication
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
+
   if (user) {
+    req.user = user;  // Attach the user to the request
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
@@ -88,15 +96,27 @@ const verifyAuth = async (req, res, next) => {
 };
 
 
-// Get all reading posts (book reviews)
-apiRouter.get('/reading', (_req, res) => {
-  res.send(readingPosts);
+
+apiRouter.get('/reading', verifyAuth, (req, res) => {
+  const user = req.user; // The authenticated user
+
+  // Separate the user's reviews from others
+  const userReviews = readingPosts.filter(post => post.user === user.email);
+  const otherReviews = readingPosts.filter(post => post.user !== user.email);
+
+  res.json({ myReviews: userReviews, otherReviews: otherReviews });
 });
 
 // Get all writing posts
-apiRouter.get('/writing', (_req, res) => {
-  res.send(writingPosts);
+apiRouter.get('/writing', verifyAuth, (req, res) => {
+  const user = req.user; // The user from the authentication middleware
+  
+  // Filter writings to only show the current user's writings
+  const userWritings = writingPosts.filter(post => post.user === user.email);
+
+  res.json({ myWritings: userWritings }); // Send only the user's writings
 });
+
 
 // Submit a reading post (book review)
 apiRouter.post('/reading', verifyAuth, (req, res) => {
@@ -105,7 +125,7 @@ apiRouter.post('/reading', verifyAuth, (req, res) => {
     title: req.body.title,
     review: req.body.review,
     rating: req.body.rating,
-    user: req.body.user,
+    user: req.user.email, 
   };
 
   readingPosts.push(newPost);
@@ -159,13 +179,15 @@ app.use((err, req, res, next) => {
 
 // Serve frontend for unknown routes
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('login.html', { root: 'public' });
 });
 
 // Start server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+
 
 
   
