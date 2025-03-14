@@ -124,7 +124,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Calls to third party endpoints** - randomly generated book of the day
 - [X] **Backend service endpoints** -done
 - [X] **Frontend calls service endpoints** -done
-- [X] **Supports registration, login, logout, and restricted endpoint** - completed
+- [X] **Supports registration, login, logout, and restricted endpoint** - done for login logout and reading and writing endpoints
 
 ## 🚀 DB/Login deliverable
 
