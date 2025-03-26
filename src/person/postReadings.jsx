@@ -5,7 +5,7 @@ export function PostReview() {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(5);
-  const [username, setUsername] = useState(''); // Store logged-in user's email
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,9 +34,9 @@ export function PostReview() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!username) {
-      alert('You must be logged in to submit a review.');
+
+    if (!title || !review) {
+      alert('Please fill out both the title and review.');
       return;
     }
   
@@ -68,33 +68,35 @@ export function PostReview() {
   return (
     <div>
       <h3>Post a book review:</h3>
-      <textarea 
-        rows="1" 
-        cols="50" 
-        placeholder="Title of book" 
-        value={title} 
-        onChange={(e) => setTitle(e.target.value)} 
-      />
-      <textarea 
-        rows="5" 
-        cols="50" 
-        placeholder="Write your thoughts here..." 
-        style={{ width: '100%', height: '200px', overflowY: 'auto' }} 
-        value={review} 
-        onChange={(e) => setReview(e.target.value)} 
-      />
-      <label htmlFor="rating">Overall Rating:</label>
-      <input 
-        type="range" 
-        id="rating" 
-        name="rating" 
-        min="0" 
-        max="10" 
-        value={rating} 
-        onChange={(e) => setRating(Number(e.target.value))} 
-      />
-      <br />
-      <button type="submit" onClick={handleSubmit}>Submit rating</button>
+      <form onSubmit={handleSubmit}>
+        <textarea 
+          rows="1" 
+          cols="50" 
+          placeholder="Title of book" 
+          value={title} 
+          onChange={(e) => setTitle(e.target.value)} 
+        />
+        <textarea 
+          rows="5" 
+          cols="50" 
+          placeholder="Write your thoughts here..." 
+          style={{ width: '100%', height: '200px', overflowY: 'auto' }} 
+          value={review} 
+          onChange={(e) => setReview(e.target.value)} 
+        />
+        <label htmlFor="rating">Overall Rating:</label>
+        <input 
+          type="range" 
+          id="rating" 
+          name="rating" 
+          min="0" 
+          max="10" 
+          value={rating} 
+          onChange={(e) => setRating(Number(e.target.value))} 
+        />
+        <br />
+        <button type="submit">Submit rating</button>
+      </form>
     </div>
   );
 }

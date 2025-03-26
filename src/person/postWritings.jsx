@@ -18,7 +18,7 @@ export function PostWriting() {
 
         if (response.ok) {
           const data = await response.json();
-          setUsername(data.username || 'Anonymous'); // Store user's email
+          setUsername(data.email || 'Anonymous'); // Store user's email
         } else {
           console.error('User not authenticated');
           navigate('/login'); // Redirect to login page if not authenticated
@@ -76,22 +76,28 @@ export function PostWriting() {
   return (
     <div>
       <h3>Post your writing:</h3>
-      <textarea 
-        rows="1" 
-        cols="50" 
-        placeholder="Title" 
-        value={title} 
-        onChange={(e) => setTitle(e.target.value)} 
-      />
-      <textarea 
-        rows="5" 
-        cols="50" 
-        placeholder="Post your writing here..." 
-        style={{ width: '100%', height: '200px', overflowY: 'auto' }} 
-        value={content} 
-        onChange={(e) => setContent(e.target.value)} 
-      />
-      <button type="submit" onClick={handleUpload}>Upload</button>
+      <form onSubmit={handleUpload}> {/* Using form to handle submit */}
+        <div>
+          <textarea
+            rows="1"
+            cols="50"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <textarea
+            rows="5"
+            cols="50"
+            placeholder="Post your writing here..."
+            style={{ width: '100%', height: '200px', overflowY: 'auto' }}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </div>
+        <button type="submit">Upload</button> {/* Using button inside form */}
+      </form>
     </div>
   );
 }
