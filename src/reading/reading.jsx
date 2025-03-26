@@ -92,8 +92,8 @@ export function Books() {
           console.log('Fetched reviews:', data); // Log the fetched reviews
 
           // Check if the response has reviews and filter based on username
-          const userReviews = data.filter((review) => review.user === username); // Match by username
-          const otherReviews = data.filter((review) => review.user !== username); // Other users
+          const userReviews = data.myReviews.filter((review) => review.user === username); // Match by username
+          const otherReviews = data.otherReviews.filter((review) => review.user !== username); // Other users
 
           setMyReviews(userReviews);
           setOtherReviews(otherReviews);

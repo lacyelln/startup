@@ -27,8 +27,8 @@ export function Writings() {
         const writingsData = await writingsResponse.json();
 
         // Separate writings into my writings and others
-        const userWritings = writingsData.filter(writing => writing.user === userData.username);
-        const otherUsersWritings = writingsData.filter(writing => writing.user !== userData.username);
+        const userWritings = writingsData.myWritings.filter(writing => writing.user === userData.username);
+        const otherUsersWritings = writingsData.otherWritings.filter(writing => writing.user !== userData.username);
 
         setMyWritings(userWritings);
         setOtherWritings(otherUsersWritings);
