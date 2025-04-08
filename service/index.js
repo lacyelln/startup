@@ -5,6 +5,7 @@ const uuid = require('uuid');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const db = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const app = express();
 const authCookieName = 'token';
@@ -167,7 +168,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
