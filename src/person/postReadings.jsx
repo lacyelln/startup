@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function PostReview() {
@@ -6,8 +6,28 @@ export function PostReview() {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(5);
   const [username, setUsername] = useState('');
+  const socketRef = useRef(null);
   const navigate = useNavigate();
 
+  // Establish WebSocket connection
+  useEffect(() => {
+    const socket = new WebSocket(`ws://${window.location.host}`);
+    socketRef.current = socket;
+
+    socket.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    socket.onerror = (err) => {
+      console.error('WebSocket error:', err);
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  // Fetch the logged-in user
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -15,7 +35,7 @@ export function PostReview() {
           method: 'GET',
           credentials: 'include',
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           setUsername(data.username || 'Anonymous');
@@ -28,10 +48,10 @@ export function PostReview() {
         navigate('/login');
       }
     };
-  
+
     fetchUser();
   }, [navigate]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,9 +59,14 @@ export function PostReview() {
       alert('Please fill out both the title and review.');
       return;
     }
-  
-    const newReview = { title, review, rating: Number(rating), user: username };
-  
+
+    const newReview = {
+      title,
+      review,
+      rating: Number(rating),
+      user: username,
+    };
+
     try {
       const response = await fetch('/api/reading', {
         method: 'POST',
@@ -49,8 +74,13 @@ export function PostReview() {
         body: JSON.stringify(newReview),
         credentials: 'include',
       });
-  
+
       if (response.ok) {
+        // ✅ Send the new review via WebSocket
+        if (socketRef.current?.readyState === WebSocket.OPEN) {
+          socketRef.current.send(JSON.stringify({ type: 'new-review', data: newReview }));
+        }
+
         setTitle('');
         setReview('');
         setRating(5);
@@ -69,30 +99,30 @@ export function PostReview() {
     <div>
       <h3>Post a book review:</h3>
       <form onSubmit={handleSubmit}>
-        <textarea 
-          rows="1" 
-          cols="50" 
-          placeholder="Title of book" 
-          value={title} 
-          onChange={(e) => setTitle(e.target.value)} 
+        <textarea
+          rows="1"
+          cols="50"
+          placeholder="Title of book"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <textarea 
-          rows="5" 
-          cols="50" 
-          placeholder="Write your thoughts here..." 
-          style={{ width: '100%', height: '200px', overflowY: 'auto' }} 
-          value={review} 
-          onChange={(e) => setReview(e.target.value)} 
+        <textarea
+          rows="5"
+          cols="50"
+          placeholder="Write your thoughts here..."
+          style={{ width: '100%', height: '200px', overflowY: 'auto' }}
+          value={review}
+          onChange={(e) => setReview(e.target.value)}
         />
         <label htmlFor="rating">Overall Rating:</label>
-        <input 
-          type="range" 
-          id="rating" 
-          name="rating" 
-          min="0" 
-          max="10" 
-          value={rating} 
-          onChange={(e) => setRating(Number(e.target.value))} 
+        <input
+          type="range"
+          id="rating"
+          name="rating"
+          min="0"
+          max="10"
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
         />
         <br />
         <button type="submit">Submit rating</button>
