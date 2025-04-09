@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { WritingEvent, WritingReadingNotifier } from '../person/postingNotifier'; // Import the WritingReadingNotifier
 
 export function Writings() {
   const [writings, setWritings] = useState([]);
@@ -38,7 +39,26 @@ export function Writings() {
     };
 
     fetchUserAndWritings();
-  }, []);
+
+    // WebSocket event handler to listen for new writings
+    const handleWebSocketEvent = (event) => {
+      if (event.type === WritingEvent.NewWriting) {
+        // Update the writings when a new writing event is received
+        if (event.value.user === username) {
+          setMyWritings((prev) => [...prev, event.value]); // Add to my writings
+        } else {
+          setOtherWritings((prev) => [...prev, event.value]); // Add to other writings
+        }
+      }
+    };
+
+    WritingReadingNotifier.addHandler(handleWebSocketEvent);
+
+    // Cleanup WebSocket event handler on component unmount
+    return () => {
+      WritingReadingNotifier.removeHandler(handleWebSocketEvent);
+    };
+  }, [username]);
 
   return (
     <main className="container-fluid body text-center">

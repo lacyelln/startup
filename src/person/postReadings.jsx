@@ -1,34 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { WritingEvent, WritingReadingNotifier } from './postingNotifier'; // Import the WritingReadingNotifier
 
 export function PostReview() {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(5);
   const [username, setUsername] = useState('');
-  const socketRef = useRef(null);
+  const [events, setEvents] = useState([]); // State to track events from WebSocket
   const navigate = useNavigate();
 
-  // Establish WebSocket connection
   useEffect(() => {
-    const socket = new WebSocket(`ws://${window.location.host}`);
-    socketRef.current = socket;
-
-    socket.onopen = () => {
-      console.log('WebSocket connected');
-    };
-
-    socket.onerror = (err) => {
-      console.error('WebSocket error:', err);
-    };
-
-    return () => {
-      socket.close();
-    };
-  }, []);
-
-  // Fetch the logged-in user
-  useEffect(() => {
+    // Fetch user data
     const fetchUser = async () => {
       try {
         const response = await fetch('/api/user', {
@@ -50,8 +33,24 @@ export function PostReview() {
     };
 
     fetchUser();
+
+    // Add event handler for WebSocket
+    const handleWebSocketEvent = (event) => {
+      // Handle different types of events (new review, etc.)
+      if (event.type === WritingEvent.NewWriting) {
+        setEvents((prevEvents) => [...prevEvents, event]);
+      }
+    };
+
+    WritingReadingNotifier.addHandler(handleWebSocketEvent);
+
+    // Cleanup WebSocket event handler on component unmount
+    return () => {
+      WritingReadingNotifier.removeHandler(handleWebSocketEvent);
+    };
   }, [navigate]);
 
+  // Handle form submission (posting a new review)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,12 +59,7 @@ export function PostReview() {
       return;
     }
 
-    const newReview = {
-      title,
-      review,
-      rating: Number(rating),
-      user: username,
-    };
+    const newReview = { title, review, rating: Number(rating), user: username };
 
     try {
       const response = await fetch('/api/reading', {
@@ -76,10 +70,8 @@ export function PostReview() {
       });
 
       if (response.ok) {
-        // ✅ Send the new review via WebSocket
-        if (socketRef.current?.readyState === WebSocket.OPEN) {
-          socketRef.current.send(JSON.stringify({ type: 'new-review', data: newReview }));
-        }
+        // Send the new review via WebSocket
+        WritingReadingNotifier.broadcastEvent(username, WritingEvent.NewWriting, newReview);
 
         setTitle('');
         setReview('');
@@ -94,6 +86,27 @@ export function PostReview() {
       alert('Error submitting review. Check console for details.');
     }
   };
+
+  // Render the list of events (reviews)
+  function createMessageArray() {
+    const messageArray = [];
+    for (const [i, event] of events.entries()) {
+      let message = 'unknown';
+      if (event.type === WritingEvent.NewWriting) {
+        message = `${event.value.user} posted a new review: "${event.value.title}"`;
+      } else if (event.type === WritingEvent.System) {
+        message = event.value.msg;
+      }
+
+      messageArray.push(
+        <div key={i} className="event">
+          <span className={'player-event'}>{event.from}</span>
+          {message}
+        </div>
+      );
+    }
+    return messageArray;
+  }
 
   return (
     <div>
@@ -127,6 +140,10 @@ export function PostReview() {
         <br />
         <button type="submit">Submit rating</button>
       </form>
+
+      <div id="player-messages">
+        {createMessageArray()} {/* Render the list of events (new reviews) */}
+      </div>
     </div>
   );
 }

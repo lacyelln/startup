@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ReadingEvent, WritingReadingNotifier } from '../person/postingNotifier'; // Import the WritingReadingNotifier
 
 export function BookOfTheDay() {
   const [book, setBook] = useState(null);
@@ -114,6 +115,25 @@ export function Books() {
     };
 
     fetchReviews();
+
+    // WebSocket event handler to listen for new reviews
+    const handleWebSocketEvent = (event) => {
+      if (event.type === WritingEvent.NewWriting) {
+        // Update the reviews when a new writing event is received
+        if (event.value.user === username) {
+          setMyReviews((prev) => [...prev, event.value]); // Add to my reviews
+        } else {
+          setOtherReviews((prev) => [...prev, event.value]); // Add to other reviews
+        }
+      }
+    };
+
+    WritingReadingNotifier.addHandler(handleWebSocketEvent);
+
+    // Cleanup WebSocket event handler on component unmount
+    return () => {
+      WritingReadingNotifier.removeHandler(handleWebSocketEvent);
+    };
   }, [username]); // Re-run when username is available
 
   return (
